@@ -1,0 +1,12 @@
+test
+testcesartest
+test  Thu Apr 14 22:30:28 CST 2016
+cesar  Thu Apr 14 22:30:28 CST 2016
+C:\Users\Cesar\Desktop\市场调研 getXmlToString Error  Thu Apr 14 23:38:01 CST 2016
+C:\Users\Cesar\Desktop\市场调研 getXmlToString Error  Thu Apr 14 23:38:04 CST 2016
+F:\twitterData\Abbynyhk\1460599004.57.xml 读取错误  Thu Apr 14 23:50:55 CST 2016
+C:\Users\Cesar\Desktop\1460599004.57.xml 解析错误  Fri Apr 15 00:04:55 CST 2016
+C:\Users\Cesar\Desktop\1460599004.57.xml 解析错误  Fri Apr 15 00:11:07 CST 2016
+C:\Users\Cesar\Desktop\1460599004.57.xml 解析错误  Fri Apr 15 00:11:18 CST 2016
+C:\Users\Cesar\Desktop\1460599004.57.xml 解析错误  Fri Apr 15 00:11:44 CST 2016
+F:\twitterData\Abbynyhk\1460599004.57.xml 解析错误  Fri Apr 15 22:46:51 CST 2016

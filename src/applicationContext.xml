@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="/config.properties">
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url">
+			<value>${jdbc_url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc_user}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc_password}</value>
+		</property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/cesar/twitter/bean/Media.hbm.xml</value>
+				<value>com/cesar/twitter/bean/RetweetedStatus.hbm.xml</value>
+				<value>com/cesar/twitter/bean/Statu.hbm.xml</value>
+				<value>com/cesar/twitter/bean/User.hbm.xml</value>
+				<value>com/cesar/twitter/bean/UserMentions.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MediaDAO" class="com.cesar.twitter.dao.MediaDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="RetweetedStatusDAO" class="com.cesar.twitter.dao.RetweetedStatusDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="StatuDAO" class="com.cesar.twitter.dao.StatuDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="UserDAO" class="com.cesar.twitter.dao.UserDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="UserMentionsDAO" class="com.cesar.twitter.dao.UserMentionsDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="ParseMainService" class="com.cesar.twitter.service.ParseMainService">
+	<property name="mediaDAO" ref="MediaDAO"></property>
+	<property name="retweetedStatusDAO" ref="RetweetedStatusDAO"></property>
+	<property name="statuDAO" ref="StatuDAO"></property>
+	<property name="userDAO" ref="UserDAO"></property>
+	<property name="userMentionsDAO" ref="UserMentionsDAO"></property>
+	</bean>
+
+</beans>
