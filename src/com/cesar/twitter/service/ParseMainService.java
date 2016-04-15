@@ -83,6 +83,11 @@ public class ParseMainService {
 	}
 
 	private void saveRetStatus(RetweetedStatus retweetedStatus) {
+		
+		if(retweetedStatusDAO.findById(retweetedStatus.getId())!=null){
+			return;
+		}
+		
 		if (retweetedStatus.getMedia() != null) {
 			Media media = mediaDAO.findById(retweetedStatus.getMedia().getId());
 			if (media == null) {
@@ -97,6 +102,7 @@ public class ParseMainService {
 			}
 			retweetedStatus.setUserId(retweetedStatus.getUser().getId());
 		}
+		retweetedStatusDAO.save(retweetedStatus);
 	}
 
 	public StatuDAO getStatuDAO() {
