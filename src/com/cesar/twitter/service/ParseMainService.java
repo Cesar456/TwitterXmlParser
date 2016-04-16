@@ -13,6 +13,7 @@ import com.cesar.twitter.dao.RetweetedStatusDAO;
 import com.cesar.twitter.dao.StatuDAO;
 import com.cesar.twitter.dao.UserDAO;
 import com.cesar.twitter.dao.UserMentionsDAO;
+import com.cesar.twitter.util.CommonUtil;
 import com.cesar.twitter.util.FileUtil;
 import com.cesar.twitter.util.XmlUtil;
 
@@ -38,7 +39,12 @@ public class ParseMainService {
 			for (File file : files) {
 				List<Statu> status = XmlUtil.twitter_xml_parser(file);
 				for (Statu statu : status) {
-					saveStatu(statu);
+					try {
+						saveStatu(statu);
+					} catch (Exception e) {
+						CommonUtil.log(file.getAbsolutePath()+"  id="+statu.getId()+"  err");
+						CommonUtil.log(e.getMessage());
+					}
 				}
 				System.out.println("...");
 			}
